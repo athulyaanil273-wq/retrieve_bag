@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Typography */
+  --font-display: "Outfit", system-ui, -apple-system, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Brand Palette: Deep Navy Canvas + Pink & Lavender Accents */
+  --color-navy-950: #070d1f;
+  --color-navy-900: #0b132b;
+  --color-navy-850: #111c3a;
+  --color-navy-800: #17254a;
+  --color-navy-700: #223463;
+  --color-navy-600: #314880;
+
+  --color-pink-300: #f9a8d4;
+  --color-pink-400: #f472b6;
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+
+  --color-lavender-200: #ddd6fe;
+  --color-lavender-300: #c4b5fd;
+  --color-lavender-400: #a78bfa;
+  --color-lavender-500: #8b5cf6;
+
+  --color-ink-primary: #f8fafc;
+  --color-ink-secondary: #cbd5e1;
+  --color-ink-muted: #94a3b8;
+
+  /* Semantic Status Colors (always paired with icon + text label) */
+  --color-status-matched: #34d399;
+  --color-status-review: #fbbf24;
+  --color-status-alert: #fb7185;
+  --color-status-info: #c4b5fd;
+
+  /* Spacing & Radii */
+  --radius-card: 1.25rem;
+  --radius-inner: 0.75rem;
+  --radius-control: 0.75rem;
+
+  /* Settling Motion Curve */
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-navy-900);
+    color: var(--color-ink-primary);
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--color-navy-900);
+    color: var(--color-ink-primary);
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  /* Accessible high-visibility keyboard focus indicator */
+  :focus-visible {
+    outline: 2px solid var(--color-pink-400);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .tabular-nums-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .surface-card {
+    background-color: var(--color-navy-850);
+    border: 1px solid rgba(196, 181, 253, 0.14);
+    border-radius: var(--radius-card);
+  }
+
+  .surface-elevated {
+    background-color: var(--color-navy-800);
+    border: 1px solid rgba(196, 181, 253, 0.2);
+    border-radius: var(--radius-inner);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
